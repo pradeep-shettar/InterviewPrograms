@@ -19,12 +19,12 @@ public class Customer {
 	/**
 	 * The name used for storing the Customer name.
 	 */
-	String name;
+	private String name;
 
 	/**
 	 * contactNumber used for storing the contact number of the customer.
 	 */
-	String contactNumber;
+	private String contactNumber;
 
 	/**
 	 * @param name
