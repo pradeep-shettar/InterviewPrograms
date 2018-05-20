@@ -24,24 +24,12 @@ public class Receipt {
 	/**
 	 * order to store the order details made by the customer.
 	 */
-	private Order order;
+	private CoffeeOrder coffeeOrder;
 
 	/**
 	 * totalCost to store the total cost of the orders made.
 	 */
 	private Double totalCost;
-
-	/**
-	 * @param receiptNumber
-	 * @param order
-	 * @param totalCost
-	 */
-	public Receipt(String receiptNumber, Order order, Double totalCost) {
-		super();
-		this.receiptNumber = receiptNumber;
-		this.order = order;
-		this.totalCost = totalCost;
-	}
 
 	/**
 	 * @return the receiptNumber
@@ -59,18 +47,18 @@ public class Receipt {
 	}
 
 	/**
-	 * @return the order
+	 * @return the coffeeOrder
 	 */
-	public Order getOrder() {
-		return order;
+	public CoffeeOrder getCoffeeOrder() {
+		return coffeeOrder;
 	}
 
 	/**
-	 * @param order
-	 *            the order to set
+	 * @param coffeeOrder
+	 *            the coffeeOrder to set
 	 */
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setCoffeeOrder(CoffeeOrder coffeeOrder) {
+		this.coffeeOrder = coffeeOrder;
 	}
 
 	/**
@@ -97,7 +85,7 @@ public class Receipt {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((order == null) ? 0 : order.hashCode());
+		result = prime * result + ((coffeeOrder == null) ? 0 : coffeeOrder.hashCode());
 		result = prime * result + ((receiptNumber == null) ? 0 : receiptNumber.hashCode());
 		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
 		return result;
@@ -117,10 +105,10 @@ public class Receipt {
 		if (getClass() != obj.getClass())
 			return false;
 		Receipt other = (Receipt) obj;
-		if (order == null) {
-			if (other.order != null)
+		if (coffeeOrder == null) {
+			if (other.coffeeOrder != null)
 				return false;
-		} else if (!order.equals(other.order))
+		} else if (!coffeeOrder.equals(other.coffeeOrder))
 			return false;
 		if (receiptNumber == null) {
 			if (other.receiptNumber != null)
@@ -142,7 +130,20 @@ public class Receipt {
 	 */
 	@Override
 	public String toString() {
-		return "Receipt [receiptNumber=" + receiptNumber + ", order=" + order + ", totalCost=" + totalCost + "]";
+		return "Receipt [receiptNumber=" + receiptNumber + ", coffeeOrder=" + coffeeOrder + ", totalCost=" + totalCost
+				+ "]";
+	}
+
+	/**
+	 * @param receiptNumber
+	 * @param coffeeOrder
+	 * @param totalCost
+	 */
+	public Receipt(String receiptNumber, CoffeeOrder coffeeOrder, Double totalCost) {
+		super();
+		this.receiptNumber = receiptNumber;
+		this.coffeeOrder = coffeeOrder;
+		this.totalCost = totalCost;
 	}
 
 }

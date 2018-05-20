@@ -61,4 +61,9 @@ public class CoffeeStallConstants {
 	 */
 	public static final String CREATING_DUPLICATE_COFFEE_ENTRY = "Coffee entry already exists!";
 
+	/**
+	 * User defined constant for data not found in Database.
+	 */
+	public static final String COFFEE_DATA_NOT_FOUND_CODE = "DB-004";
+
 }
