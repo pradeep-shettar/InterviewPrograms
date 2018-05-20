@@ -13,23 +13,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 
 @JsonInclude
-public class CustomerResponse {
+public class CustomerResponse extends ServiceResponse {
 
 	/**
 	 * Default constructor for Response for the customer creation operation.
 	 */
 	public CustomerResponse() {
 	}
-
-	/**
-	 * statusCode to store the status code of the response.
-	 */
-	private String statusCode;
-
-	/**
-	 * statusMessage to store the message of the response status.
-	 */
-	private String statusMessage;
 
 	/**
 	 * customer to store the customer details of the response.
@@ -46,36 +36,6 @@ public class CustomerResponse {
 		this.statusCode = statusCode;
 		this.statusMessage = statusMessage;
 		this.customer = customer;
-	}
-
-	/**
-	 * @return the statusCode
-	 */
-	public String getStatusCode() {
-		return statusCode;
-	}
-
-	/**
-	 * @param statusCode
-	 *            the statusCode to set
-	 */
-	public void setStatusCode(String statusCode) {
-		this.statusCode = statusCode;
-	}
-
-	/**
-	 * @return the statusMessage
-	 */
-	public String getStatusMessage() {
-		return statusMessage;
-	}
-
-	/**
-	 * @param statusMessage
-	 *            the statusMessage to set
-	 */
-	public void setStatusMessage(String statusMessage) {
-		this.statusMessage = statusMessage;
 	}
 
 	/**

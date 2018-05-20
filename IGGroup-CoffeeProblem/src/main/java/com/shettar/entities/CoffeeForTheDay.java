@@ -5,12 +5,15 @@ package com.shettar.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * @author Pradeep.Shettar
  * 
  *         Entity class for Servings data.
  *
  */
+@JsonInclude
 public class CoffeeForTheDay {
 
 	/**

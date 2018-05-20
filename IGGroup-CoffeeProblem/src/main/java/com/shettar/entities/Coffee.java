@@ -3,11 +3,14 @@
  */
 package com.shettar.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * @author Pradeep.Shettar
  *
  *         The Entity class for coffee.
  */
+@JsonInclude
 public class Coffee {
 
 	/**
