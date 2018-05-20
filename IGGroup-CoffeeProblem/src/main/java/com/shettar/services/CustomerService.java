@@ -4,6 +4,8 @@
 package com.shettar.services;
 
 import com.shettar.entities.Customer;
+import com.shettar.entities.CustomerResponse;
+import com.shettar.exceptions.ServiceException;
 
 /**
  * @author Pradeep.Shettar
@@ -19,6 +21,7 @@ public interface CustomerService {
 	 * @param customer
 	 * 
 	 * @return the constructed customer entry.
+	 * @throws ServiceException
 	 */
-	public Customer createCustomer(Customer customer);
+	public CustomerResponse createCustomer(Customer customer) throws ServiceException;
 }
