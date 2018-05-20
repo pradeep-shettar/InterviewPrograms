@@ -4,6 +4,7 @@
 package com.shettar.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.shettar.entities.CoffeeForTheDay;
 import com.shettar.exceptions.DaoException;
@@ -50,4 +51,11 @@ public interface CoffeeDao {
 	 * @throws DaoException
 	 */
 	public CoffeeForTheDay removeCoffeeForTheDay(String coffeeName, Date date) throws DaoException;
+	
+	/**
+	 * The method to get all the coffees for the day entries.
+	 * @return
+	 * @throws DaoException
+	 */
+	public List<CoffeeForTheDay> getAllCoffeeForTheDay(Date date) throws DaoException;
 }

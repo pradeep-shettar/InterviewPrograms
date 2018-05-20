@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shettar.entities.CoffeeOrder;
 import com.shettar.entities.OrderRequest;
 import com.shettar.entities.OrderResponse;
+import com.shettar.exceptions.ServiceException;
 import com.shettar.services.OrderService;
 
 /**
@@ -32,7 +32,11 @@ public class OrderController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody OrderResponse makeAnOrder(@RequestBody OrderRequest orderRequest) {
-		OrderResponse orderResponse = orderService.processOrder(orderRequest);
+		try {
+			OrderResponse orderResponse = orderService.processOrder(orderRequest);
+		} catch (ServiceException serviceException) {
+			serviceException.printStackTrace();
+		}
 		return null;
 	}
 }

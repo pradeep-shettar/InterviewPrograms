@@ -113,4 +113,25 @@ public class CoffeeDaoImpl implements CoffeeDao {
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.shettar.dao.CoffeeDao#getAllCoffeeForTheDay(java.util.Date)
+	 */
+	@Override
+	public List<CoffeeForTheDay> getAllCoffeeForTheDay(Date date) throws DaoException {
+		LOGGER.debug("Entered the method getAllCoffeeForTheDay method of CoffeeDaoImpl class with parameter date: "
+				+ date.toString());
+		List<CoffeeForTheDay> coffeeForTheDayList = new ArrayList<>();
+		for (CoffeeForTheDay coffeeForTheDay : listOfCoffees) {
+			if (coffeeForTheDay.getServingDate().equals(date)) {
+				coffeeForTheDayList.add(coffeeForTheDay);
+			}
+		}
+		LOGGER.debug(
+				"Exiting the method getAllCoffeeForTheDay method of CoffeeDaoImpl class with parameter coffeeForTheDayList: "
+						+ coffeeForTheDayList.toString());
+		return coffeeForTheDayList;
+	}
+
 }
