@@ -1,0 +1,105 @@
+{
+	"id": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
+	"name": "Coffee-Stall",
+	"description": "Coffee stall application.\n1. Create new customer\n2. Add a new coffee variety\n3. Process order\n4. Generate report",
+	"order": [
+		"a619adbb-e686-5295-1110-c63e05246d85",
+		"dd034737-2971-deff-a7c6-8f56642c8cdc",
+		"a1270665-7c45-6ef6-23f1-86dd9fc47ff6"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1527099067740,
+	"owner": "1674200",
+	"public": false,
+	"requests": [
+		{
+			"id": "a1270665-7c45-6ef6-23f1-86dd9fc47ff6",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{HTTP-method}}://{{ip-address}}:{{port}}/orders",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1527192882052,
+			"name": "Order Coffee",
+			"description": "Order request for a particular customer.",
+			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
+			"responses": [],
+			"rawModeData": "{\n\t\"date\" : \"2018-05-24\",\n\t\"customer\" : {\n\t\t\"name\":\"Pradeep\",\n\t\t\"contactNumber\" : \"+91-9739468874\"\n\t},\n\t\"coffees\" : [\n\t\t\t{\n\t\t\t\t\"coffeeName\" : \"Cappuccino\",\n\t\t\t\t\"count\" : 4\n\t\t\t}\n\t\t]\n}"
+		},
+		{
+			"id": "a619adbb-e686-5295-1110-c63e05246d85",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{HTTP-method}}://{{ip-address}}:{{port}}/customers",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1527099782393,
+			"name": "Add Customer",
+			"description": "The operation to add a customer to the coffee stall database",
+			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
+			"responses": [],
+			"rawModeData": "{\n\t\"name\":\"Pradeep\",\n\t\"contactNumber\" : \"+91-9739468874\"\n}"
+		},
+		{
+			"id": "dd034737-2971-deff-a7c6-8f56642c8cdc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{HTTP-method}}://{{ip-address}}:{{port}}/coffees",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1527187367730,
+			"name": "Add Coffee for the day",
+			"description": "REST post call to add coffee type to Database.",
+			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
+			"responses": [],
+			"rawModeData": "{\n\t\"coffee\" :\t{\n\t\t\"coffeeName\" : \"Cappuccino\",\n\t\t\"description\" : \"Composed of double espresso and hot milk, with the surface topped with foamed milk\",\n\t\t\"cost\" : 50\n\t},\n\t\"servingDate\" : \"2018-05-25\",\n\t\"totalServings\" : 100,\n\t\"totalServingsLeft\" : 100\n}"
+		}
+	]
+}
