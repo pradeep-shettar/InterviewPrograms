@@ -29,6 +29,20 @@ public class CoffeeDaoImpl implements CoffeeDao {
 
 	private List<CoffeeForTheDay> listOfCoffees;
 
+	/**
+	 * @return the listOfCoffees
+	 */
+	public List<CoffeeForTheDay> getListOfCoffees() {
+		return listOfCoffees;
+	}
+
+	/**
+	 * @param listOfCoffees the listOfCoffees to set
+	 */
+	public void setListOfCoffees(List<CoffeeForTheDay> listOfCoffees) {
+		this.listOfCoffees = listOfCoffees;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

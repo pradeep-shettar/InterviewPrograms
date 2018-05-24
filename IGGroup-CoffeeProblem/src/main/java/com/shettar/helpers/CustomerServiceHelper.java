@@ -4,6 +4,7 @@
 package com.shettar.helpers;
 
 import com.shettar.constants.CoffeeStallConstants;
+import com.shettar.entities.Customer;
 import com.shettar.entities.CustomerResponse;
 import com.shettar.exceptions.ServiceException;
 
@@ -16,9 +17,10 @@ public class CustomerServiceHelper {
 
 	/**
 	 * @param serviceException
+	 * @param customer 
 	 * @return
 	 */
-	public static CustomerResponse handleServiceException(ServiceException serviceException) {
+	public static CustomerResponse handleServiceException(ServiceException serviceException, Customer customer) {
 		CustomerResponse customerResponse = new CustomerResponse();
 		if (serviceException.getMessage().equals(CoffeeStallConstants.DATABASE_TRANSACTION_FAILURE_CODE)) {
 			customerResponse.setStatusCode(CoffeeStallConstants.INTERNAL_SERVER_ERROR_STATUS_CODE);

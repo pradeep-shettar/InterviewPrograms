@@ -3,8 +3,10 @@
  */
 package com.shettar.controllers;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ import com.shettar.services.CustomerService;
  *         Controller class for adding a new customer.
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
 
 	/**
@@ -35,7 +37,24 @@ public class CustomerController {
 	/**
 	 * customerService object for customer service.
 	 */
+	@Autowired
 	private CustomerService customerService;
+
+	/**
+	 * @return the customerService
+	 */
+	public CustomerService getCustomerService() {
+		return customerService;
+	}
+
+
+	/**
+	 * @param customerService the customerService to set
+	 */
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
 
 	/**
 	 * The controller method creates and stores the customer data if the
@@ -54,7 +73,7 @@ public class CustomerController {
 		} catch (ServiceException serviceException) {
 			LOGGER.error("serviceException caught in createCustomer method of CustomerController class\n"
 					+ serviceException.toString());
-			customerResponse = CustomerServiceHelper.handleServiceException(serviceException);
+			customerResponse = CustomerServiceHelper.handleServiceException(serviceException,customer);
 		}
 		LOGGER.debug("Exiting createCustomer method of CustomerController class with returning value: "
 				+ customerResponse.toString());

@@ -5,6 +5,7 @@ package com.shettar.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,23 @@ import com.shettar.services.OrderService;
 @RequestMapping("/order")
 public class OrderController {
 
+	@Autowired
 	OrderService orderService;
+	
+	/**
+	 * @return the orderService
+	 */
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	/**
+	 * @param orderService the orderService to set
+	 */
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
 	/**
 	 * Logger for class level logging
 	 */

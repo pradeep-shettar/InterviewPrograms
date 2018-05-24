@@ -5,6 +5,8 @@ package com.shettar.servicesImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.shettar.constants.CoffeeStallConstants;
 import com.shettar.dao.CoffeeDao;
 import com.shettar.dao.CustomerDao;
@@ -23,10 +25,40 @@ import com.shettar.services.OrderService;
  */
 public class OrderServiceImpl implements OrderService {
 
+	@Autowired
 	CustomerDao customerDao;
 	
+	@Autowired
 	CoffeeDao coffeeDao;
 	
+	/**
+	 * @return the customerDao
+	 */
+	public CustomerDao getCustomerDao() {
+		return customerDao;
+	}
+
+	/**
+	 * @param customerDao the customerDao to set
+	 */
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
+
+	/**
+	 * @return the coffeeDao
+	 */
+	public CoffeeDao getCoffeeDao() {
+		return coffeeDao;
+	}
+
+	/**
+	 * @param coffeeDao the coffeeDao to set
+	 */
+	public void setCoffeeDao(CoffeeDao coffeeDao) {
+		this.coffeeDao = coffeeDao;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.shettar.services.OrderService#processOrder(com.shettar.entities.OrderRequest)
 	 */

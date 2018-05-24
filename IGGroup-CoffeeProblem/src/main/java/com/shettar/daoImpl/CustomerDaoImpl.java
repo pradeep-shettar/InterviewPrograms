@@ -22,8 +22,22 @@ public class CustomerDaoImpl implements CustomerDao {
 	/**
 	 * list of customers in stored.
 	 */
-	private volatile List<Customer> customers;
+	private List<Customer> customers;
 	
+	/**
+	 * @return the customers
+	 */
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	/**
+	 * @param customers the customers to set
+	 */
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
 	/**
 	 * Logger object for class level logging.
 	 */

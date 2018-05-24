@@ -5,6 +5,7 @@ package com.shettar.servicesImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.shettar.constants.CoffeeStallConstants;
 import com.shettar.dao.CustomerDao;
@@ -28,7 +29,24 @@ public class CustomerServiceImpl implements CustomerService {
 	/**
 	 * CustomerDao type for customer data transactions.
 	 */
+	@Autowired
 	CustomerDao customerDao;
+
+	/**
+	 * @return the customerDao
+	 */
+	public CustomerDao getCustomerDao() {
+		return customerDao;
+	}
+
+
+	/**
+	 * @param customerDao the customerDao to set
+	 */
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -49,6 +67,8 @@ public class CustomerServiceImpl implements CustomerService {
 					+ customerDaoException.toString());
 			throw new ServiceException(CoffeeStallConstants.DATABASE_TRANSACTION_FAILURE_CODE);
 		}
+		customerResponse.setStatusCode(CoffeeStallConstants.CREATED_STATUS_CODE);
+		customerResponse.setStatusMessage(CoffeeStallConstants.CUSTOMER_CREATED_MESSAGE);
 		LOGGER.debug("Exiting the createCustomer method of CustomerServiceImpl class with retruning value: "
 				.concat(customerResponse == null ? null : customerResponse.toString()));
 		return customerResponse;
