@@ -82,6 +82,9 @@ public class CoffeeDaoImpl implements CoffeeDao {
 		for (CoffeeForTheDay coffeeForTheDay : listOfCoffees) {
 			if (coffeeName.equals(coffeeForTheDay.getCoffee().getCoffeeName())
 					&& date.equals(coffeeForTheDay.getServingDate())) {
+				if(coffeeForTheDay.getServingsLeft() == 0) {
+					throw new DaoException(CoffeeStallConstants.COFFEE_SOLD_OUT_CODE);
+				}
 				LOGGER.debug(
 						"Exiting the method getCoffeeForTheDay method of CoffeeDaoImpl class with coffeeForTheDay: "
 								+ coffeeForTheDay.toString());

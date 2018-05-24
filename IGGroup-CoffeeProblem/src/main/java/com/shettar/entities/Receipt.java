@@ -3,6 +3,8 @@
  */
 package com.shettar.entities;
 
+import java.util.List;
+
 /**
  * @author Pradeep.Shettar
  *
@@ -24,7 +26,7 @@ public class Receipt {
 	/**
 	 * order to store the order details made by the customer.
 	 */
-	private CoffeeOrder coffeeOrder;
+	private List<CoffeeOrder> coffeeOrders;
 
 	/**
 	 * totalCost to store the total cost of the orders made.
@@ -47,18 +49,17 @@ public class Receipt {
 	}
 
 	/**
-	 * @return the coffeeOrder
+	 * @return the coffeeOrders
 	 */
-	public CoffeeOrder getCoffeeOrder() {
-		return coffeeOrder;
+	public List<CoffeeOrder> getCoffeeOrders() {
+		return coffeeOrders;
 	}
 
 	/**
-	 * @param coffeeOrder
-	 *            the coffeeOrder to set
+	 * @param coffeeOrders the coffeeOrders to set
 	 */
-	public void setCoffeeOrder(CoffeeOrder coffeeOrder) {
-		this.coffeeOrder = coffeeOrder;
+	public void setCoffeeOrders(List<CoffeeOrder> coffeeOrders) {
+		this.coffeeOrders = coffeeOrders;
 	}
 
 	/**
@@ -76,24 +77,20 @@ public class Receipt {
 		this.totalCost = totalCost;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((coffeeOrder == null) ? 0 : coffeeOrder.hashCode());
+		result = prime * result + ((coffeeOrders == null) ? 0 : coffeeOrders.hashCode());
 		result = prime * result + ((receiptNumber == null) ? 0 : receiptNumber.hashCode());
 		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -105,10 +102,10 @@ public class Receipt {
 		if (getClass() != obj.getClass())
 			return false;
 		Receipt other = (Receipt) obj;
-		if (coffeeOrder == null) {
-			if (other.coffeeOrder != null)
+		if (coffeeOrders == null) {
+			if (other.coffeeOrders != null)
 				return false;
-		} else if (!coffeeOrder.equals(other.coffeeOrder))
+		} else if (!coffeeOrders.equals(other.coffeeOrders))
 			return false;
 		if (receiptNumber == null) {
 			if (other.receiptNumber != null)
@@ -123,26 +120,24 @@ public class Receipt {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Receipt [receiptNumber=" + receiptNumber + ", coffeeOrder=" + coffeeOrder + ", totalCost=" + totalCost
+		return "Receipt [receiptNumber=" + receiptNumber + ", coffeeOrders=" + coffeeOrders + ", totalCost=" + totalCost
 				+ "]";
 	}
 
 	/**
 	 * @param receiptNumber
-	 * @param coffeeOrder
+	 * @param coffeeOrders
 	 * @param totalCost
 	 */
-	public Receipt(String receiptNumber, CoffeeOrder coffeeOrder, Double totalCost) {
+	public Receipt(String receiptNumber, List<CoffeeOrder> coffeeOrders, Double totalCost) {
 		super();
 		this.receiptNumber = receiptNumber;
-		this.coffeeOrder = coffeeOrder;
+		this.coffeeOrders = coffeeOrders;
 		this.totalCost = totalCost;
 	}
 

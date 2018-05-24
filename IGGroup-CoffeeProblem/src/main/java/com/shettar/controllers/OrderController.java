@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.shettar.entities.OrderRequest;
 import com.shettar.entities.OrderResponse;
 import com.shettar.exceptions.ServiceException;
+import com.shettar.helpers.OrderServiceHelper;
 import com.shettar.services.OrderService;
 
 /**
@@ -22,7 +24,8 @@ import com.shettar.services.OrderService;
  *
  *	The controller class for orders.
  */
-@RequestMapping("/order")
+@RestController
+@RequestMapping("/orders")
 public class OrderController {
 
 	@Autowired
@@ -49,10 +52,11 @@ public class OrderController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody OrderResponse makeAnOrder(@RequestBody OrderRequest orderRequest) {
+		OrderResponse orderResponse = null;
 		try {
-			OrderResponse orderResponse = orderService.processOrder(orderRequest);
+			orderResponse = orderService.processOrder(orderRequest);
 		} catch (ServiceException serviceException) {
-			serviceException.printStackTrace();
+			orderResponse = OrderServiceHelper.handleErrors(serviceException);
 		}
 		return null;
 	}

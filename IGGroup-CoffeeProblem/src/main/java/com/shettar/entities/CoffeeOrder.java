@@ -12,35 +12,59 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude
 public class CoffeeOrder {
 
-	private Coffee coffee;
+	/**
+	 * name of the coffee.
+	 */
+	private String coffeeName;
 	
+	/**
+	 * total number of coffees orders of same type.
+	 */
 	private Integer count;
 
-	public Coffee getCoffee() {
-		return coffee;
-	}
-
-	public void setCoffee(Coffee coffee) {
-		this.coffee = coffee;
-	}
-
+	/**
+	 * @return
+	 */
 	public Integer getCount() {
 		return count;
 	}
 
+	/**
+	 * @param count
+	 */
 	public void setCount(Integer count) {
 		this.count = count;
 	}
 
+	/**
+	 * @return the coffeeName
+	 */
+	public String getCoffeeName() {
+		return coffeeName;
+	}
+
+	/**
+	 * @param coffeeName the coffeeName to set
+	 */
+	public void setCoffeeName(String coffeeName) {
+		this.coffeeName = coffeeName;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((coffee == null) ? 0 : coffee.hashCode());
+		result = prime * result + ((coffeeName == null) ? 0 : coffeeName.hashCode());
 		result = prime * result + ((count == null) ? 0 : count.hashCode());
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -50,10 +74,10 @@ public class CoffeeOrder {
 		if (getClass() != obj.getClass())
 			return false;
 		CoffeeOrder other = (CoffeeOrder) obj;
-		if (coffee == null) {
-			if (other.coffee != null)
+		if (coffeeName == null) {
+			if (other.coffeeName != null)
 				return false;
-		} else if (!coffee.equals(other.coffee))
+		} else if (!coffeeName.equals(other.coffeeName))
 			return false;
 		if (count == null) {
 			if (other.count != null)
@@ -63,20 +87,22 @@ public class CoffeeOrder {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CoffeeOrder [coffeeName=" + coffeeName + ", count=" + count + "]";
+	}
+
 	/**
-	 * @param coffee
+	 * @param coffeeName
 	 * @param count
 	 */
-	public CoffeeOrder(Coffee coffee, Integer count) {
+	public CoffeeOrder(String coffeeName, Integer count) {
 		super();
-		this.coffee = coffee;
+		this.coffeeName = coffeeName;
 		this.count = count;
 	}
 
-	@Override
-	public String toString() {
-		return "CoffeeOrder [coffee=" + coffee + ", count=" + count + "]";
-	}
-	
-	
 }

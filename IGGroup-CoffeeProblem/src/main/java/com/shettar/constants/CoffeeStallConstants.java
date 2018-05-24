@@ -79,6 +79,21 @@ public class CoffeeStallConstants {
 	/**
 	 * Constant for message on successfully creating a coffee data.
 	 */
-	public static final String CREATED_COFFEE_MESSAGE = "Coffee Data for the day Created!";;
+	public static final String CREATED_COFFEE_MESSAGE = "Coffee Data for the day Created!";
+
+	/**
+	 * User defined constant for coffee data sold out.
+	 */
+	public static final String COFFEE_SOLD_OUT_CODE = "DB-005";
+
+	/**
+	 * User defined status code for not found.
+	 */
+	public static final String DATA_NOT_FOUND_CODE = "CS-404";
+
+	/**
+	 * User defined message for coffee data not available.
+	 */
+	public static final String COFFEE_NOT_AVAILABLE_MESSAGE = "Coffee not available!";
 
 }

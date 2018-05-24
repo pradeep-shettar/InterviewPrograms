@@ -179,4 +179,11 @@ public class CoffeeForTheDay {
 				+ ", servingsLeft=" + servingsLeft + "]";
 	}
 
+	/**
+	 * 
+	 */
+	public void decrementServings() {
+		servingsLeft--;
+	}
+
 }
