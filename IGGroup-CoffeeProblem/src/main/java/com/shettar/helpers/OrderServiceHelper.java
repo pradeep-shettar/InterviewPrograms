@@ -3,10 +3,13 @@
  */
 package com.shettar.helpers;
 
+import java.util.Date;
 import java.util.List;
 
 import com.shettar.constants.CoffeeStallConstants;
+import com.shettar.entities.CoffeeForTheDay;
 import com.shettar.entities.CoffeeOrder;
+import com.shettar.entities.Customer;
 import com.shettar.entities.OrderResponse;
 import com.shettar.entities.Receipt;
 import com.shettar.exceptions.ServiceException;
@@ -35,17 +38,34 @@ public class OrderServiceHelper {
 	}
 
 	/**
+	 * @param customer 
 	 * @param totalCost
 	 * @param coffeeOrder 
 	 * @param receiptNumber 
 	 * @return
 	 */
-	public static Receipt constructReceipt(Double totalCost, List<CoffeeOrder> coffees, String receiptNumber) {
+	public static Receipt constructReceipt(Customer customer, Double totalCost, List<CoffeeOrder> coffees, String receiptNumber) {
 		Receipt receipt = new Receipt();
 		receipt.setCoffeeOrders(coffees);
 		receipt.setReceiptNumber(receiptNumber);
 		receipt.setTotalCost(totalCost);
+		receipt.setCustomer(customer);
+		receipt.setReceiptDate(new Date());
 		return receipt;
+	}
+
+	/**
+	 * @param allCoffeeForTheDay
+	 * @param coffeeName
+	 * @return
+	 */
+	public static CoffeeForTheDay getCoffeeForTheDay(List<CoffeeForTheDay> allCoffeeForTheDay, String coffeeName) {
+		for (CoffeeForTheDay coffeeForTheDay : allCoffeeForTheDay) {
+			if (coffeeName.equals(coffeeForTheDay.getCoffee().getCoffeeName())) {
+				return coffeeForTheDay;
+			}
+		}
+		return null;
 	}
 
 }

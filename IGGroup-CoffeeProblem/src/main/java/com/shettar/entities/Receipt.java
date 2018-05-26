@@ -3,13 +3,17 @@
  */
 package com.shettar.entities;
 
+import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * @author Pradeep.Shettar
  *
  *         Entity class to store the receipt data.
  */
+@JsonInclude
 public class Receipt {
 
 	/**
@@ -22,6 +26,16 @@ public class Receipt {
 	 * receiptNumber to store the unique id of the Receipt.
 	 */
 	private String receiptNumber;
+
+	/**
+	 * date when the receipt created.
+	 */
+	private Date receiptDate;
+
+	/**
+	 * Customer who placed the order.
+	 */
+	private Customer customer;
 
 	/**
 	 * order to store the order details made by the customer.
@@ -56,7 +70,8 @@ public class Receipt {
 	}
 
 	/**
-	 * @param coffeeOrders the coffeeOrders to set
+	 * @param coffeeOrders
+	 *            the coffeeOrders to set
 	 */
 	public void setCoffeeOrders(List<CoffeeOrder> coffeeOrders) {
 		this.coffeeOrders = coffeeOrders;
@@ -77,7 +92,39 @@ public class Receipt {
 		this.totalCost = totalCost;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the receiptDate
+	 */
+	public Date getReceiptDate() {
+		return receiptDate;
+	}
+
+	/**
+	 * @param receiptDate
+	 *            the receiptDate to set
+	 */
+	public void setReceiptDate(Date receiptDate) {
+		this.receiptDate = receiptDate;
+	}
+
+	/**
+	 * @return the customer
+	 */
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	/**
+	 * @param customer
+	 *            the customer to set
+	 */
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -85,12 +132,16 @@ public class Receipt {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((coffeeOrders == null) ? 0 : coffeeOrders.hashCode());
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + ((receiptDate == null) ? 0 : receiptDate.hashCode());
 		result = prime * result + ((receiptNumber == null) ? 0 : receiptNumber.hashCode());
 		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -107,6 +158,16 @@ public class Receipt {
 				return false;
 		} else if (!coffeeOrders.equals(other.coffeeOrders))
 			return false;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (receiptDate == null) {
+			if (other.receiptDate != null)
+				return false;
+		} else if (!receiptDate.equals(other.receiptDate))
+			return false;
 		if (receiptNumber == null) {
 			if (other.receiptNumber != null)
 				return false;
@@ -120,23 +181,19 @@ public class Receipt {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Receipt [receiptNumber=" + receiptNumber + ", coffeeOrders=" + coffeeOrders + ", totalCost=" + totalCost
-				+ "]";
-	}
-
 	/**
 	 * @param receiptNumber
+	 * @param receiptDate
+	 * @param customer
 	 * @param coffeeOrders
 	 * @param totalCost
 	 */
-	public Receipt(String receiptNumber, List<CoffeeOrder> coffeeOrders, Double totalCost) {
+	public Receipt(String receiptNumber, Date receiptDate, Customer customer, List<CoffeeOrder> coffeeOrders,
+			Double totalCost) {
 		super();
 		this.receiptNumber = receiptNumber;
+		this.receiptDate = receiptDate;
+		this.customer = customer;
 		this.coffeeOrders = coffeeOrders;
 		this.totalCost = totalCost;
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.shettar.constants.CoffeeStallConstants;
 import com.shettar.dao.CoffeeDao;
 import com.shettar.dao.CustomerDao;
 import com.shettar.entities.CoffeeForTheDay;
@@ -75,22 +76,22 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			allCoffeeForTheDay = coffeeDao.getAllCoffeeForTheDay(orderRequest.getDate());
 		} catch (DaoException daoException) {
-			daoException.printStackTrace();
+			throw new ServiceException(daoException.getMessage());
 		}
 		List<CoffeeOrder> coffees = orderRequest.getCoffees();
 		for (CoffeeOrder coffeeOrder : coffees) {
-			CoffeeForTheDay coffeeForTheDay = null;
-			try {
-				coffeeForTheDay = coffeeDao.getCoffeeForTheDay(coffeeOrder.getCoffeeName(), orderRequest.getDate());
-			} catch (DaoException daoException) {
-				throw new ServiceException(daoException.getMessage());
+			CoffeeForTheDay coffeeForTheDay = OrderServiceHelper.getCoffeeForTheDay(allCoffeeForTheDay, coffeeOrder.getCoffeeName());
+			if (coffeeForTheDay == null) {
+				throw new ServiceException(CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE);
 			}
 			coffeeForTheDay.decrementServings();
-			totalCost = totalCost + coffeeForTheDay.getCoffee().getCost();
+			totalCost = totalCost + (coffeeForTheDay.getCoffee().getCost()*coffeeOrder.getCount());
 		}
 		Customer customer = orderRequest.getCustomer();
-		orderResponse.setReceipt(OrderServiceHelper.constructReceipt(totalCost, coffees,
-				String.valueOf(orderRequest.getDate()).concat(String.valueOf(allCoffeeForTheDay.size()))));
+		orderResponse.setReceipt(OrderServiceHelper.constructReceipt(customer, totalCost, coffees,
+				String.valueOf(orderRequest.getDate().getTime())));
+		orderResponse.setStatusCode(CoffeeStallConstants.SUCCESS_STATUS_CODE);
+		orderResponse.setStatusMessage(CoffeeStallConstants.ORDER_PLACED_MESSAGE);
 		return orderResponse;
 	}
 

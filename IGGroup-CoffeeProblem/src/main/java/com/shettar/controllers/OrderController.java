@@ -58,6 +58,6 @@ public class OrderController {
 		} catch (ServiceException serviceException) {
 			orderResponse = OrderServiceHelper.handleErrors(serviceException);
 		}
-		return null;
+		return orderResponse;
 	}
 }

@@ -96,4 +96,14 @@ public class CoffeeStallConstants {
 	 */
 	public static final String COFFEE_NOT_AVAILABLE_MESSAGE = "Coffee not available!";
 
+	/**
+	 * User defined status code for successful transaction.
+	 */
+	public static final String SUCCESS_STATUS_CODE = "CS-200";
+
+	/**
+	 * User defined message for placed order
+	 */
+	public static final String ORDER_PLACED_MESSAGE = "The order has been placed.";
+
 }

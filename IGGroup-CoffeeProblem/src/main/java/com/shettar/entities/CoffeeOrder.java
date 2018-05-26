@@ -13,6 +13,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class CoffeeOrder {
 
 	/**
+	 * 
+	 */
+	public CoffeeOrder() {
+	}
+	
+	/**
 	 * name of the coffee.
 	 */
 	private String coffeeName;

@@ -139,6 +139,9 @@ public class CoffeeDaoImpl implements CoffeeDao {
 	public List<CoffeeForTheDay> getAllCoffeeForTheDay(Date date) throws DaoException {
 		LOGGER.debug("Entered the method getAllCoffeeForTheDay method of CoffeeDaoImpl class with parameter date: "
 				+ date.toString());
+		if (listOfCoffees == null || listOfCoffees.isEmpty()) {
+			throw new DaoException(CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE);
+		}
 		List<CoffeeForTheDay> coffeeForTheDayList = new ArrayList<>();
 		for (CoffeeForTheDay coffeeForTheDay : listOfCoffees) {
 			if (coffeeForTheDay.getServingDate().equals(date)) {
