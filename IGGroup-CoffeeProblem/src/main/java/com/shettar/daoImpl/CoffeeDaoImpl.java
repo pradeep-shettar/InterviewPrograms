@@ -51,7 +51,7 @@ public class CoffeeDaoImpl implements CoffeeDao {
 	 * CoffeeForTheDay)
 	 */
 	@Override
-	public void createCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) throws DaoException {
+	public void loadCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) throws DaoException {
 		LOGGER.debug("Entered the createCoffeeForTheDay method of CoffeeDaoImpl class with parameter: "
 				+ coffeeForTheDay.toString());
 		if (listOfCoffees == null) {

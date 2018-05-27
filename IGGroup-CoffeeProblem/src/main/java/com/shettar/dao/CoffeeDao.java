@@ -22,7 +22,7 @@ public interface CoffeeDao {
 	 * @param coffeeForTheDay
 	 * @throws DaoException 
 	 */
-	public void createCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) throws DaoException;
+	public void loadCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) throws DaoException;
 	
 	/**
 	 * The method to get the CoffeeForTheDay value with coffee and date as parameter.

@@ -12,7 +12,6 @@ import com.shettar.dao.CoffeeDao;
 import com.shettar.entities.CoffeeForTheDay;
 import com.shettar.entities.CoffeeResponse;
 import com.shettar.exceptions.DaoException;
-import com.shettar.exceptions.ServiceException;
 import com.shettar.helpers.CoffeeServiceHelper;
 import com.shettar.services.CoffeeService;
 
@@ -26,7 +25,7 @@ public class CoffeeServiceImpl implements CoffeeService {
 	/**
 	 * The Logger for class level logging.
 	 */
-	Logger LOGGER = LoggerFactory.getLogger(CoffeeServiceImpl.class);
+	Logger logger = LoggerFactory.getLogger(CoffeeServiceImpl.class);
 
 	/**
 	 * The default constructor for Coffee Service.
@@ -63,19 +62,20 @@ public class CoffeeServiceImpl implements CoffeeService {
 	 */
 	@Override
 	public CoffeeResponse addCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) {
-		LOGGER.debug("Entered addCoffeeForTheDay method of CoffeeServiceImpl class with parameter: "
+		logger.debug("Entered addCoffeeForTheDay method of CoffeeServiceImpl class with parameter: "
 				+ coffeeForTheDay.toString());
 		CoffeeResponse coffeeResponse = new CoffeeResponse();
 		try {
-			coffeeDao.createCoffeeForTheDay(coffeeForTheDay);
+			coffeeDao.loadCoffeeForTheDay(coffeeForTheDay);
 		} catch (DaoException daoException) {
-			LOGGER.error("DaoException caught in addCoffeeForTheDay method of CoffeeServiceImpl class: "
+			logger.error("DaoException caught in addCoffeeForTheDay method of CoffeeServiceImpl class: "
 					+ daoException.toString());
 			coffeeResponse = CoffeeServiceHelper.constructCoffeeResponseForException(daoException.getMessage(),coffeeForTheDay);
+			return coffeeResponse;
 		}
 		coffeeResponse.setStatusCode(CoffeeStallConstants.CREATED_STATUS_CODE);
 		coffeeResponse.setStatusMessage(CoffeeStallConstants.CREATED_COFFEE_MESSAGE);
-		LOGGER.debug("Exiting addCoffeeForTheDay method of CoffeeServiceImpl class with response: "
+		logger.debug("Exiting addCoffeeForTheDay method of CoffeeServiceImpl class with response: "
 				+ coffeeResponse.toString());
 		return coffeeResponse;
 	}
