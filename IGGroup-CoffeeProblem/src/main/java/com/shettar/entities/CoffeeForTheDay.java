@@ -115,9 +115,9 @@ public class CoffeeForTheDay {
 		this.servingsLeft = servingsLeft;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -131,9 +131,7 @@ public class CoffeeForTheDay {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
