@@ -61,12 +61,6 @@ public class CoffeeController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody CoffeeResponse addCoffeeForTheDay(@RequestBody CoffeeForTheDay coffeeForTheDay) {
-		CoffeeResponse coffeeResponse = null;
-		try {
-			coffeeResponse = coffeeService.addCoffeeForTheDay(coffeeForTheDay);
-		} catch (ServiceException serviceException) {
-			coffeeResponse = CoffeeServiceHelper.constructCoffeeResponseForException(serviceException,coffeeForTheDay);
-		}
-		return coffeeResponse;
+		return coffeeService.addCoffeeForTheDay(coffeeForTheDay);
 	}
 }

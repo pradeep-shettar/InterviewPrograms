@@ -21,5 +21,5 @@ public interface CoffeeService {
 	 * @return
 	 * @throws ServiceException 
 	 */
-	public CoffeeResponse addCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) throws ServiceException;
+	public CoffeeResponse addCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay);
 }

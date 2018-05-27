@@ -13,6 +13,7 @@ import com.shettar.entities.CoffeeForTheDay;
 import com.shettar.entities.CoffeeResponse;
 import com.shettar.exceptions.DaoException;
 import com.shettar.exceptions.ServiceException;
+import com.shettar.helpers.CoffeeServiceHelper;
 import com.shettar.services.CoffeeService;
 
 /**
@@ -61,7 +62,7 @@ public class CoffeeServiceImpl implements CoffeeService {
 	 * entities.CoffeeForTheDay)
 	 */
 	@Override
-	public CoffeeResponse addCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) throws ServiceException {
+	public CoffeeResponse addCoffeeForTheDay(CoffeeForTheDay coffeeForTheDay) {
 		LOGGER.debug("Entered addCoffeeForTheDay method of CoffeeServiceImpl class with parameter: "
 				+ coffeeForTheDay.toString());
 		CoffeeResponse coffeeResponse = new CoffeeResponse();
@@ -70,7 +71,7 @@ public class CoffeeServiceImpl implements CoffeeService {
 		} catch (DaoException daoException) {
 			LOGGER.error("DaoException caught in addCoffeeForTheDay method of CoffeeServiceImpl class: "
 					+ daoException.toString());
-			throw new ServiceException(daoException.getMessage());
+			coffeeResponse = CoffeeServiceHelper.constructCoffeeResponseForException(daoException.getMessage(),coffeeForTheDay);
 		}
 		coffeeResponse.setStatusCode(CoffeeStallConstants.CREATED_STATUS_CODE);
 		coffeeResponse.setStatusMessage(CoffeeStallConstants.CREATED_COFFEE_MESSAGE);
