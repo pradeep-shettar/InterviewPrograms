@@ -23,5 +23,5 @@ public interface CustomerService {
 	 * @return the constructed customer entry.
 	 * @throws ServiceException
 	 */
-	public CustomerResponse createCustomer(Customer customer) throws ServiceException;
+	public CustomerResponse createCustomer(Customer customer);
 }

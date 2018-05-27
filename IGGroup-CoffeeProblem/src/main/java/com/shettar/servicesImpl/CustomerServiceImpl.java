@@ -12,7 +12,7 @@ import com.shettar.dao.CustomerDao;
 import com.shettar.entities.Customer;
 import com.shettar.entities.CustomerResponse;
 import com.shettar.exceptions.DaoException;
-import com.shettar.exceptions.ServiceException;
+import com.shettar.helpers.CustomerServiceHelper;
 import com.shettar.services.CustomerService;
 
 /**
@@ -39,14 +39,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao;
 	}
 
-
 	/**
-	 * @param customerDao the customerDao to set
+	 * @param customerDao
+	 *            the customerDao to set
 	 */
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -56,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 * Customer)
 	 */
 	@Override
-	public CustomerResponse createCustomer(Customer customer) throws ServiceException {
+	public CustomerResponse createCustomer(Customer customer) {
 		LOGGER.debug("Entered the createCustomer method of CustomerServiceImpl class with parameter: "
 				.concat(customer == null ? null : customer.toString()));
 		CustomerResponse customerResponse = new CustomerResponse();
@@ -65,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
 		} catch (DaoException customerDaoException) {
 			LOGGER.debug("Exception caught in createCustomer method of CustomerServiceImpl class\n"
 					+ customerDaoException.toString());
-			throw new ServiceException(CoffeeStallConstants.DATABASE_TRANSACTION_FAILURE_CODE);
+			return CustomerServiceHelper.handleServiceException(customerDaoException.getMessage());
 		}
 		customerResponse.setStatusCode(CoffeeStallConstants.CREATED_STATUS_CODE);
 		customerResponse.setStatusMessage(CoffeeStallConstants.CUSTOMER_CREATED_MESSAGE);

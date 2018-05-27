@@ -3,6 +3,7 @@
  */
 package com.shettar.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -52,6 +53,9 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public void createCustomer(Customer customer) throws DaoException {
 		LOGGER.debug("Entered createCustomer method of CustomerDaoImpl class with parameter: " + customer.toString());
+		if (customers == null) {
+			customers = new ArrayList<>();
+		}
 		if (customers.contains(customer)) {
 			LOGGER.error("Trying to create a customer whose data already exists!");
 			throw new DaoException(CoffeeStallConstants.CREATING_DUPLICATE_CUSTOMER);
