@@ -17,9 +17,11 @@ import com.shettar.entities.Customer;
 import com.shettar.services.CoffeeService;
 import com.shettar.services.CustomerService;
 import com.shettar.services.OrderService;
+import com.shettar.services.ReportService;
 import com.shettar.servicesImpl.CoffeeServiceImpl;
 import com.shettar.servicesImpl.CustomerServiceImpl;
 import com.shettar.servicesImpl.OrderServiceImpl;
+import com.shettar.servicesImpl.ReportServiceImpl;
 
 /**
  * @author Pradeep.Shettar
@@ -45,7 +47,7 @@ public class CoffeeStallConfiguration {
 		}
 		return coffeeDao;
 	}
-	
+
 	@Bean
 	public CustomerService getCustomerService() {
 		CustomerServiceImpl customerServiceImpl = new CustomerServiceImpl();
@@ -61,12 +63,19 @@ public class CoffeeStallConfiguration {
 		}
 		return customerDao;
 	}
-	
+
 	@Bean
-	public OrderService getOrderService(){
+	public OrderService getOrderService() {
 		OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
 		orderServiceImpl.setCoffeeDao(getCoffeeDao());
 		orderServiceImpl.setCustomerDao(getCustomerDao());
 		return orderServiceImpl;
+	}
+
+	@Bean
+	public ReportService getReportService() {
+		ReportServiceImpl reportServiceImpl = new ReportServiceImpl();
+		reportServiceImpl.setCoffeeDao(getCoffeeDao());
+		return reportServiceImpl;
 	}
 }

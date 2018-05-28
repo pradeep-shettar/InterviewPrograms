@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shettar.entities.ReportForTheDay;
 import com.shettar.services.ReportService;
+import com.shettar.utilities.DateUtil;
 
 /**
  * @author Pradeep.Shettar
@@ -40,9 +41,10 @@ public class ReportController {
 	ReportService reportService;
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ReportForTheDay getReportForTheDay(@PathVariable Date reportDate) {
+	public @ResponseBody ReportForTheDay getReportForTheDay(@PathVariable String reportDate) {
 		LOGGER.debug("Entered getReportForTheDay method with date: " + reportDate);
-		ReportForTheDay reportForTheDay = reportService.getReport(reportDate);
+		Date date = DateUtil.constructDate(reportDate, "dd-MM-yyyy");
+		ReportForTheDay reportForTheDay = reportService.getReport(date);
 		LOGGER.debug("Exiting getReportForTheDay method reportForTheDay: " + reportForTheDay.toString());
 		return reportForTheDay;
 	}
