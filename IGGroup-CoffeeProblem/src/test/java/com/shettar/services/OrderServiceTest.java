@@ -3,8 +3,8 @@
  */
 package com.shettar.services;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -23,7 +23,6 @@ import com.shettar.entities.Customer;
 import com.shettar.entities.OrderRequest;
 import com.shettar.entities.OrderResponse;
 import com.shettar.exceptions.DaoException;
-import com.shettar.exceptions.ServiceException;
 import com.shettar.servicesImpl.OrderServiceImpl;
 import com.shettar.utilities.DateUtil;
 
@@ -47,7 +46,7 @@ public class OrderServiceTest {
 	}
 
 	@Test
-	public void testSuccessfulOrder() {
+	public void testProcessDataForSuccessfulOrder() {
 		OrderRequestBuilder orderRequestBuilder = new OrderRequestBuilder();
 
 		List<CoffeeForTheDay> listOfCoffees = new ArrayList<>();
@@ -93,7 +92,7 @@ public class OrderServiceTest {
 		listOfCoffees.add(coffeeForTheDayFour);
 
 		try {
-			Mockito.when(orderServiceImpl.getCoffeeDao().getAllCoffeeForTheDay(Mockito.any(Date.class))).thenReturn(listOfCoffees);
+			Mockito.when(coffeeDao.getAllCoffeeForTheDay(Mockito.any(Date.class))).thenReturn(listOfCoffees);
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
@@ -108,14 +107,7 @@ public class OrderServiceTest {
 		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Espresso").populateCount(2);
 		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Cappuccino").populateCount(3);
 
-		OrderResponse orderResponse = null;
-		Exception exception = null;
-		try {
-			orderResponse = orderServiceImpl.processOrder(orderRequest);
-		} catch (ServiceException serviceException) {
-			exception = serviceException;
-		}
-		Assert.assertNull(exception);
+		OrderResponse orderResponse = orderServiceImpl.processOrder(orderRequest);
 		Assert.assertEquals(CoffeeStallConstants.SUCCESS_STATUS_CODE, orderResponse.getStatusCode());
 		Assert.assertEquals(CoffeeStallConstants.ORDER_PLACED_MESSAGE, orderResponse.getStatusMessage());
 		Assert.assertNotNull(orderResponse.getReceipt());
@@ -123,5 +115,94 @@ public class OrderServiceTest {
 		Assert.assertEquals(new Double(350), orderResponse.getReceipt().getTotalCost());
 		Assert.assertEquals(orderRequest.getCoffees(), orderResponse.getReceipt().getCoffeeOrders());
 		Assert.assertEquals(orderRequest.getCustomer(), orderResponse.getReceipt().getCustomer());
+	}
+
+	/**
+	 * Test case for empty coffeeList
+	 */
+	@Test
+	public void testProcessOrderForCoffeeListEmpty() {
+		OrderRequestBuilder orderRequestBuilder = new OrderRequestBuilder();
+
+		List<CoffeeForTheDay> listOfCoffees = new ArrayList<>();
+
+		try {
+			Mockito.when(coffeeDao.getAllCoffeeForTheDay(Mockito.any(Date.class))).thenReturn(listOfCoffees);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+
+		// Customer details for the order.
+		Customer customer = new CustomerBuilder().initialise().populateContactNumber("+919876543210")
+				.populateName("Pradeep").construct();
+
+		// Request for the order.
+		OrderRequest orderRequest = orderRequestBuilder.initialise().populateCustomer(customer)
+				.populateDate(DateUtil.constructDate("28-05-2018T01:30:00", "dd-MM-yyyy'T'HH:mm:ss")).construct();
+		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Espresso").populateCount(2);
+		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Cappuccino").populateCount(3);
+
+		OrderResponse orderResponse = orderServiceImpl.processOrder(orderRequest);
+		Assert.assertEquals(CoffeeStallConstants.DATA_NOT_FOUND_CODE, orderResponse.getStatusCode());
+		Assert.assertEquals(CoffeeStallConstants.COFFEE_NOT_AVAILABLE_MESSAGE, orderResponse.getStatusMessage());
+	}
+
+	/**
+	 * Test case for empty coffeeList
+	 */
+	@Test
+	public void testProcessOrderForCoffeeListNull() {
+		OrderRequestBuilder orderRequestBuilder = new OrderRequestBuilder();
+
+		List<CoffeeForTheDay> listOfCoffees = null;
+
+		try {
+			Mockito.when(coffeeDao.getAllCoffeeForTheDay(Mockito.any(Date.class))).thenReturn(listOfCoffees);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+
+		// Customer details for the order.
+		Customer customer = new CustomerBuilder().initialise().populateContactNumber("+919876543210")
+				.populateName("Pradeep").construct();
+
+		// Request for the order.
+		OrderRequest orderRequest = orderRequestBuilder.initialise().populateCustomer(customer)
+				.populateDate(DateUtil.constructDate("28-05-2018T01:30:00", "dd-MM-yyyy'T'HH:mm:ss")).construct();
+		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Espresso").populateCount(2);
+		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Cappuccino").populateCount(3);
+
+		OrderResponse orderResponse = orderServiceImpl.processOrder(orderRequest);
+		Assert.assertEquals(CoffeeStallConstants.DATA_NOT_FOUND_CODE, orderResponse.getStatusCode());
+		Assert.assertEquals(CoffeeStallConstants.COFFEE_NOT_AVAILABLE_MESSAGE, orderResponse.getStatusMessage());
+	}
+
+	/**
+	 * Test case for empty coffeeList
+	 */
+	@Test
+	public void testProcessOrderDaoException() {
+		OrderRequestBuilder orderRequestBuilder = new OrderRequestBuilder();
+
+		try {
+			DaoException daoException = new DaoException(CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE);
+			Mockito.when(coffeeDao.getAllCoffeeForTheDay(Mockito.any(Date.class))).thenThrow(daoException);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+
+		// Customer details for the order.
+		Customer customer = new CustomerBuilder().initialise().populateContactNumber("+919876543210")
+				.populateName("Pradeep").construct();
+
+		// Request for the order.
+		OrderRequest orderRequest = orderRequestBuilder.initialise().populateCustomer(customer)
+				.populateDate(DateUtil.constructDate("28-05-2018T01:30:00", "dd-MM-yyyy'T'HH:mm:ss")).construct();
+		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Espresso").populateCount(2);
+		orderRequestBuilder.new CoffeeOrderBuilder().initialise().populateCoffeeName("Cappuccino").populateCount(3);
+
+		OrderResponse orderResponse = orderServiceImpl.processOrder(orderRequest);
+		Assert.assertEquals(CoffeeStallConstants.DATA_NOT_FOUND_CODE, orderResponse.getStatusCode());
+		Assert.assertEquals(CoffeeStallConstants.COFFEE_NOT_AVAILABLE_MESSAGE, orderResponse.getStatusMessage());
 	}
 }

@@ -21,16 +21,16 @@ import com.shettar.exceptions.ServiceException;
 public class OrderServiceHelper {
 
 	/**
-	 * @param serviceException
+	 * @param message
 	 * @return 
 	 */
-	public static OrderResponse handleErrors(ServiceException serviceException) {
+	public static OrderResponse handleErrors(String message) {
 		OrderResponse orderResponse = new OrderResponse();
-		if (serviceException.getMessage().equals(CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE)) {
+		if (message.equals(CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE)) {
 			orderResponse.setStatusCode(CoffeeStallConstants.DATA_NOT_FOUND_CODE);
 			orderResponse.setStatusMessage(CoffeeStallConstants.COFFEE_NOT_AVAILABLE_MESSAGE);
 		}
-		else if (serviceException.getMessage().equals(CoffeeStallConstants.COFFEE_SOLD_OUT_CODE)) {
+		else if (message.equals(CoffeeStallConstants.COFFEE_SOLD_OUT_CODE)) {
 			orderResponse.setStatusCode(CoffeeStallConstants.DATA_NOT_FOUND_CODE);
 			orderResponse.setStatusMessage(CoffeeStallConstants.COFFEE_NOT_AVAILABLE_MESSAGE);
 		}

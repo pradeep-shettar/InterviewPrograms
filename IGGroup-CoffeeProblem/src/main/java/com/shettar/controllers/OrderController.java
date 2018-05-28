@@ -22,7 +22,7 @@ import com.shettar.services.OrderService;
 /**
  * @author Pradeep.Shettar
  *
- *	The controller class for orders.
+ *         The controller class for orders.
  */
 @RestController
 @RequestMapping("/orders")
@@ -30,7 +30,7 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	
+
 	/**
 	 * @return the orderService
 	 */
@@ -39,7 +39,8 @@ public class OrderController {
 	}
 
 	/**
-	 * @param orderService the orderService to set
+	 * @param orderService
+	 *            the orderService to set
 	 */
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
@@ -52,12 +53,6 @@ public class OrderController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody OrderResponse makeAnOrder(@RequestBody OrderRequest orderRequest) {
-		OrderResponse orderResponse = null;
-		try {
-			orderResponse = orderService.processOrder(orderRequest);
-		} catch (ServiceException serviceException) {
-			orderResponse = OrderServiceHelper.handleErrors(serviceException);
-		}
-		return orderResponse;
+		return orderService.processOrder(orderRequest);
 	}
 }
