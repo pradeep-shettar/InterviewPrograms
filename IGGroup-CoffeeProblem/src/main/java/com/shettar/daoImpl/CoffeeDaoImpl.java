@@ -111,7 +111,7 @@ public class CoffeeDaoImpl implements CoffeeDao {
 				+ coffeeForTheDay.toString());
 		for (CoffeeForTheDay storedCoffeeForTheDay : listOfCoffees) {
 			if (storedCoffeeForTheDay.getCoffee().equals(coffeeForTheDay.getCoffee())
-					&& storedCoffeeForTheDay.getServingDate().equals(coffeeForTheDay.getServingDate())
+					&& DateUtil.isSameDay(storedCoffeeForTheDay.getServingDate(), coffeeForTheDay.getServingDate())
 					&& coffeeForTheDay.getServingsLeft() >= 0) {
 				storedCoffeeForTheDay.setServingsLeft(coffeeForTheDay.getServingsLeft());
 				LOGGER.debug("Exiting the updateCoffeeForTheDay method of CoffeeDaoImpl class ");
