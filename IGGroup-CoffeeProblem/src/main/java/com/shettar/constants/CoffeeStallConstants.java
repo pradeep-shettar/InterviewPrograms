@@ -111,4 +111,6 @@ public class CoffeeStallConstants {
 	 */
 	public static final String REPORT_SUCCESSFULLY_RETRIEVED = "The Report for the day retrived successfully";
 
+	public static final String DATE_PARAM = "date";
+
 }

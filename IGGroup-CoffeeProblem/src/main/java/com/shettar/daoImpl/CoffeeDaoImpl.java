@@ -14,7 +14,7 @@ import com.shettar.constants.CoffeeStallConstants;
 import com.shettar.dao.CoffeeDao;
 import com.shettar.entities.CoffeeForTheDay;
 import com.shettar.exceptions.DaoException;
-import com.shettar.utilities.DateUtil;
+import com.shettar.helpers.DateUtil;
 
 /**
  * @author Pradeep.Shettar
