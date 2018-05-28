@@ -86,6 +86,11 @@ public class OrderServiceImpl implements OrderService {
 			}
 			coffeeForTheDay.decrementServings();
 			totalCost = totalCost + (coffeeForTheDay.getCoffee().getCost()*coffeeOrder.getCount());
+			try {
+				coffeeDao.updateCoffeeForTheDay(coffeeForTheDay);
+			} catch (DaoException daoException) {
+				throw new ServiceException(CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE);
+			}
 		}
 		Customer customer = orderRequest.getCustomer();
 		orderResponse.setReceipt(OrderServiceHelper.constructReceipt(customer, totalCost, coffees,
