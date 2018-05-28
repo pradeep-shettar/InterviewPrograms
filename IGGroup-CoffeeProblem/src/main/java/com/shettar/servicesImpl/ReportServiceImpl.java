@@ -38,6 +38,21 @@ public class ReportServiceImpl implements ReportService {
 	@Autowired
 	CoffeeDao coffeeDao;
 
+	/**
+	 * @return the coffeeDao
+	 */
+	public CoffeeDao getCoffeeDao() {
+		return coffeeDao;
+	}
+
+	/**
+	 * @param coffeeDao
+	 *            the coffeeDao to set
+	 */
+	public void setCoffeeDao(CoffeeDao coffeeDao) {
+		this.coffeeDao = coffeeDao;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -55,9 +70,14 @@ public class ReportServiceImpl implements ReportService {
 			if (CoffeeStallConstants.COFFEE_DATA_NOT_FOUND_CODE.equals(daoException.getMessage())) {
 				reportForTheDay = ReportServiceHelper.handleReportError(daoException.getMessage(),
 						CoffeeStallConstants.COFFEE_NOT_AVAILABLE_MESSAGE);
+				LOGGER.debug("Exiting getReport method allCoffeeForTheDay:" + reportForTheDay.toString());
+				return reportForTheDay;
 			}
 		}
-		LOGGER.debug("Exiting getReport method allCoffeeForTheDay:" + allCoffeeForTheDay.toString());
+		reportForTheDay.setStatusCode(CoffeeStallConstants.SUCCESS_STATUS_CODE);
+		reportForTheDay.setStatusMessage(CoffeeStallConstants.REPORT_SUCCESSFULLY_RETRIEVED);
+		reportForTheDay.setCoffeesForTheDay(allCoffeeForTheDay);
+		LOGGER.debug("Exiting getReport method reportForTheDay:" + reportForTheDay.toString());
 		return reportForTheDay;
 	}
 

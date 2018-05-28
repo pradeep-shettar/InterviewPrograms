@@ -106,4 +106,9 @@ public class CoffeeStallConstants {
 	 */
 	public static final String ORDER_PLACED_MESSAGE = "The order has been placed.";
 
+	/**
+	 * User defined message for successful report generation.
+	 */
+	public static final String REPORT_SUCCESSFULLY_RETRIEVED = "The Report for the day retrived successfully";
+
 }

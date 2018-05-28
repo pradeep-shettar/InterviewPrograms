@@ -14,6 +14,7 @@ import com.shettar.constants.CoffeeStallConstants;
 import com.shettar.dao.CoffeeDao;
 import com.shettar.entities.CoffeeForTheDay;
 import com.shettar.exceptions.DaoException;
+import com.shettar.utilities.DateUtil;
 
 /**
  * @author Pradeep.Shettar
@@ -147,7 +148,7 @@ public class CoffeeDaoImpl implements CoffeeDao {
 		}
 		List<CoffeeForTheDay> coffeeForTheDayList = new ArrayList<>();
 		for (CoffeeForTheDay coffeeForTheDay : listOfCoffees) {
-			if (coffeeForTheDay.getServingDate().equals(date)) {
+			if (DateUtil.isSameDay(coffeeForTheDay.getServingDate(), date)) {
 				coffeeForTheDayList.add(coffeeForTheDay);
 			}
 		}
