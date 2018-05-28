@@ -5,7 +5,8 @@
 	"order": [
 		"a619adbb-e686-5295-1110-c63e05246d85",
 		"dd034737-2971-deff-a7c6-8f56642c8cdc",
-		"a1270665-7c45-6ef6-23f1-86dd9fc47ff6"
+		"a1270665-7c45-6ef6-23f1-86dd9fc47ff6",
+		"e36fec3f-f5fa-f3de-e5cf-7701560dcf08"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -35,12 +36,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1527192882052,
+			"time": 1527536905215,
 			"name": "Order Coffee",
 			"description": "Order request for a particular customer.",
 			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
 			"responses": [],
-			"rawModeData": "{\n\t\"date\" : \"2018-05-24\",\n\t\"customer\" : {\n\t\t\"name\":\"Pradeep\",\n\t\t\"contactNumber\" : \"+91-9739468874\"\n\t},\n\t\"coffees\" : [\n\t\t\t{\n\t\t\t\t\"coffeeName\" : \"Cappuccino\",\n\t\t\t\t\"count\" : 4\n\t\t\t}\n\t\t]\n}"
+			"rawModeData": "{\n\t\"date\" : \"2018-05-26\",\n\t\"customer\" : {\n\t\t\"name\":\"Pradeep\",\n\t\t\"contactNumber\" : \"+91-9739468874\"\n\t},\n\t\"coffees\" : [\n\t\t\t{\n\t\t\t\t\"coffeeName\" : \"Cappuccino\",\n\t\t\t\t\"count\" : 4\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"coffeeName\" : \"Espresso\",\n\t\t\t\t\"count\" : 2\n\t\t\t}\n\t\t]\n}"
 		},
 		{
 			"id": "a619adbb-e686-5295-1110-c63e05246d85",
@@ -65,7 +66,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1527099782393,
+			"time": 1527314860873,
 			"name": "Add Customer",
 			"description": "The operation to add a customer to the coffee stall database",
 			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
@@ -94,12 +95,41 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1527187367730,
+			"time": 1527542031839,
 			"name": "Add Coffee for the day",
 			"description": "REST post call to add coffee type to Database.",
 			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
 			"responses": [],
-			"rawModeData": "{\n\t\"coffee\" :\t{\n\t\t\"coffeeName\" : \"Cappuccino\",\n\t\t\"description\" : \"Composed of double espresso and hot milk, with the surface topped with foamed milk\",\n\t\t\"cost\" : 50\n\t},\n\t\"servingDate\" : \"2018-05-25\",\n\t\"totalServings\" : 100,\n\t\"totalServingsLeft\" : 100\n}"
+			"rawModeData": "\t{\n\t\t\"coffee\" :\t{\n\t\t\t\"coffeeName\" : \"Cappuccino\",\n\t\t\t\"description\" : \"Composed of double espresso and hot milk, with the surface topped with foamed milk\",\n\t\t\t\"cost\" : 50\n\t\t},\n\t\t\"servingDate\" : \"2018-05-26\",\n\t\t\"totalServings\" : 100,\n\t\t\"servingsLeft\" : 100\n\t}"
+		},
+		{
+			"id": "e36fec3f-f5fa-f3de-e5cf-7701560dcf08",
+			"headers": "",
+			"headerData": [],
+			"url": "{{HTTP-method}}://{{ip-address}}:{{port}}/reports?date=26-05-2019",
+			"queryParams": [
+				{
+					"key": "date",
+					"value": "26-05-2019",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1527542931043,
+			"name": "Report Generator",
+			"description": "Generates the report for the day.",
+			"collectionId": "2ff99a48-333d-b66f-ca75-ba03b7b07eef",
+			"responses": []
 		}
 	]
 }
